@@ -1,0 +1,51 @@
+name: Selenium Conference 2022
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [opened, labeled, unlabeled, synchronize]
+
+jobs:
+  test:
+    runs-on: macos-latest
+
+    strategy:
+      matrix:
+        node-version: [16.13.0]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm install
+      - name: "BrowserStack Env Setup"
+        uses: "browserstack/github-actions/setup-env@master"
+        with:
+          username: ${{ secrets.BROWSERSTACK_USERNAME }}
+          access-key: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+          build-name: BUILD_INFO
+          project-name: "REPO_NAME"
+      - name: Run test
+        id: test
+        continue-on-error: true
+        env:
+          VIDEO_USER_1_DLOC: ${{ secrets.VIDEO_USER_1_DLOC }}
+          VIDEO_USER_2_DLOC: ${{ secrets.VIDEO_USER_2_DLOC }}
+          VIDEO_USER_3_DLOC: ${{ secrets.VIDEO_USER_3_DLOC }}
+          AUDIO_USER_1_DLOC: ${{ secrets.AUDIO_USER_1_DLOC }}
+          AUDIO_USER_2_DLOC: ${{ secrets.AUDIO_USER_2_DLOC }}
+          AUDIO_USER_3_DLOC: ${{ secrets.AUDIO_USER_3_DLOC }}
+          VIDEO_USER_1_MLOC: ${{ secrets.VIDEO_USER_1_MLOC }}
+          VIDEO_USER_2_MLOC: ${{ secrets.VIDEO_USER_2_MLOC }}
+          VIDEO_USER_3_MLOC: ${{ secrets.VIDEO_USER_3_MLOC }}
+          AUDIO_USER_1_MLOC: ${{ secrets.AUDIO_USER_1_MLOC }}
+          AUDIO_USER_2_MLOC: ${{ secrets.AUDIO_USER_2_MLOC }}
+          AUDIO_USER_3_MLOC: ${{ secrets.AUDIO_USER_3_MLOC }}
+          PHONE_NUMBER: ${{ secrets.PHONE_NUMBER }}
+          BROWSERSTACK_TEST_USERNAME: ${{ secrets.BROWSERSTACK_TEST_USERNAME }}
+          BROWSERSTACK_TEST_ACCESS_KEY: ${{ secrets.BROWSERSTACK_TEST_ACCESS_KEY }}
+        run: BUILD_TS=${{ github.run_number }}-${{ github.run_attempt }} npm run all
+

@@ -69,11 +69,37 @@ module.exports = {
         start_process: false,
       },
     },
+    // desktop: {
+    //   extends: "webdriver",
+    //   desiredCapabilities: {
+    //     browserName: "chrome",
+    //     browserVersion: "103.0",
+    //     "goog:chromeOptions": {
+    //       w3c: true,
+    //       args: [
+    //         "use-fake-device-for-media-stream",
+    //         "use-fake-ui-for-media-stream",
+    //         "no-sandbox",
+    //         `use-file-for-fake-video-capture=${process.env.VIDEO_USER_1_MLOC}`,
+    //         `use-file-for-fake-audio-capture=${process.env.AUDIO_USER_1_MLOC}`,
+    //       ],
+    //     },
+    //   },
+    // },
     desktop: {
-      extends: "webdriver",
+      extends: "browserstack",
       desiredCapabilities: {
         browserName: "chrome",
-        browserVersion: "103.0",
+        browserVersion: "100.0",
+        "bstack:options": {
+          os: "OS X",
+          osVersion: "Catalina",
+          idleTimeout: "300",
+          projectName: "Selenium Conference",
+          buildName: `Selenium Conference ${process.env.BUILD_TS}`,
+          debug: "true",
+          maskCommands: "setValues, getValues, setCookies, getCookies",
+        },
         "goog:chromeOptions": {
           w3c: true,
           args: [
