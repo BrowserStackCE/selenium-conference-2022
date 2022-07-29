@@ -1,0 +1,26 @@
+{
+  "name": "browserstack-nightwatch-selenium-conf-2022",
+  "version": "1.0.0",
+  "description": "Selenium Conference 2022",
+  "main": "index.js",
+  "scripts": {
+    "test": "rm -rf dist && tsc && nightwatch",
+    "locate-store": "npm run test -- --group geolocation --env cloudiPhoneMobile",
+    "otp": "npm run test --  dist/tests/mobile-otp/otp.js --env cloudSIMMobile",
+    "desktop-mobile-otp": "npm run test -- dist/tests/mobile-otp/desktop-mobile-otp.js --env cloudDesktop,cloudSIMMobile",
+    "audio-video-conf": "npm run test -- --group video-conferencing --env desktop,cloudDesktop,cloudMobile",
+    "all": "npm run locate-store; npm run otp; npm run audio-video-conf; npm run desktop-mobile-otp"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/nightwatch": "^2.0.9",
+    "nightwatch": "^2.3.0",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "browserstack-local": "^1.5.1",
+    "chromedriver": "^103.0.0"
+  }
+}
