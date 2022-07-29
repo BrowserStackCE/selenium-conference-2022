@@ -45,5 +45,7 @@ jobs:
           AUDIO_USER_2_MLOC: ${{ secrets.AUDIO_USER_2_MLOC }}
           AUDIO_USER_3_MLOC: ${{ secrets.AUDIO_USER_3_MLOC }}
           PHONE_NUMBER: ${{ secrets.PHONE_NUMBER }}
+          BROWSERSTACK_TEST_USERNAME: ${{ BROWSERSTACK_TEST_USERNAME }}
+          BROWSERSTACK_TEST_ACCESS_KEY: ${{ BROWSERSTACK_TEST_ACCESS_KEY }}
         run: BUILD_TS=${{ github.run_number }}-${{ github.run_attempt }} npm run all
 
