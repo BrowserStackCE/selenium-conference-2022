@@ -89,11 +89,11 @@ module.exports = {
     desktop: {
       extends: "browserstack",
       desiredCapabilities: {
-        browserName: "chrome",
+        "browserName" : "Edge",
         browserVersion: "100.0",
         "bstack:options": {
-          os: "OS X",
-          osVersion: "Catalina",
+          os: "Windows",
+          osVersion: "11",
           idleTimeout: "300",
           projectName: "Selenium Conference",
           buildName: `Selenium Conference ${process.env.BUILD_TS}`,
