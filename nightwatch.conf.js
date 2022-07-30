@@ -57,6 +57,7 @@ module.exports = {
         "bstack:options": {
           userName: "${BROWSERSTACK_USERNAME}",
           accessKey: "${BROWSERSTACK_ACCESS_KEY}",
+          projectName: "Selenium Conference 2022",
         },
       },
 
@@ -89,13 +90,12 @@ module.exports = {
     desktop: {
       extends: "browserstack",
       desiredCapabilities: {
-        browserName: "chrome",
+        browserName: "edge",
         browserVersion: "100.0",
         "bstack:options": {
           os: "OS X",
-          osVersion: "Catalina",
+          osVersion: "Mojave",
           idleTimeout: "300",
-          projectName: "Selenium Conference",
           buildName: `Selenium Conference ${process.env.BUILD_TS}`,
           debug: "true",
           maskCommands: "setValues, getValues, setCookies, getCookies",
@@ -121,7 +121,6 @@ module.exports = {
           os: "OS X",
           osVersion: "Catalina",
           idleTimeout: "300",
-          projectName: "Selenium Conference",
           buildName: `Selenium Conference ${process.env.BUILD_TS}`,
           debug: "true",
           maskCommands: "setValues, getValues, setCookies, getCookies",
@@ -145,7 +144,6 @@ module.exports = {
         autoAcceptAlerts: "true",
         autoAcceptAlerts: "true",
         "bstack:options": {
-          projectName: "Selenium Conference",
           deviceName: "Samsung Galaxy S21",
           buildName: `Selenium Conference ${process.env.BUILD_TS}`,
           sessionName: "Mobile",
@@ -174,7 +172,7 @@ module.exports = {
         autoAcceptAlerts: true,
         "bstack:options": {
           appiumVersion: "1.22.0",
-          projectName: "Selenium Conference",
+          projectName: "Selenium Conference 2022",
           deviceName: "iPhone 13",
           buildName: `Selenium Conference ${process.env.BUILD_TS}`,
           sessionName: "Mobile",
@@ -198,7 +196,7 @@ module.exports = {
         "bstack:options": {
           userName: "${BROWSERSTACK_TEST_USERNAME}",
           accessKey: "${BROWSERSTACK_TEST_ACCESS_KEY}",
-          projectName: "Selenium Conference",
+          projectName: "Selenium Conference 2022",
           deviceName: "Samsung Galaxy S21",
           buildName: `Selenium Conference ${process.env.BUILD_TS}`,
           sessionName: "Mobile",
